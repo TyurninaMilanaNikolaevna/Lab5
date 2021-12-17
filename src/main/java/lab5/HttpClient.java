@@ -22,7 +22,7 @@ import java.util.concurrent.CompletionStage;
 
 public class HttpClient {
 
-    private ActorRef cacheActor;
+    private final ActorRef cacheActor;
 
     HttpClient (ActorSystem actorSystem) {
         cacheActor = actorSystem.actorOf(CacheActor.props(), "cacheActor");
@@ -32,7 +32,7 @@ public class HttpClient {
         return Flow.<Pair<String,Integer>>create()
             .mapConcat((request) -> Collections.nCopies(request.second(), request.first()))
             .mapAsync(5, (request) -> {
-                Long startTime = System.currentTimeMillis();
+                long startTime = System.currentTimeMillis();
                 return Dsl.asyncHttpClient()
                         .prepareGet(request)
                         .execute()
