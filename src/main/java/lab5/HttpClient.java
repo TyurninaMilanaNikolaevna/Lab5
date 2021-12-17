@@ -12,6 +12,7 @@ import akka.stream.javadsl.Sink;
 import akka.japi.Pair;
 import org.asynchttpclient.Dsl;
 
+import java.time.Duration;
 import java.util.Collections;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -41,6 +42,6 @@ public class HttpClient {
                                 Integer.parseInt(request.getUri().query().getOrElse("count", ""))
                     )
                 ).mapAsync(3, (request) -> Patterns
-                        .ask(cacheActor, request, ))
+                        .ask(cacheActor, request, Duration.ofSeconds(5)))
     }
 }
