@@ -22,5 +22,6 @@ public class HttpClient {
                         .toCompletableFuture()
                         .thenCompose((response -> CompletableFuture.completedFuture(System.currentTimeMillis() - startTime)))
     })
+            .toMatS
             >
 }
