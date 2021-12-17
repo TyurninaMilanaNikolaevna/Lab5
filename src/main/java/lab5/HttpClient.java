@@ -6,6 +6,6 @@ import org.asynchttpclient.AsyncHttpClient;
 public class HttpClient {
 
     AsyncHttpClient(ActorSystem actorSystem) {
-        
+        cacheActor = actorSystem.actorOf(CacheActor.class)
     }
 }
