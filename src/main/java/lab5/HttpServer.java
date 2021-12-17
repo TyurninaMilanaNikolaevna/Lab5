@@ -38,7 +38,7 @@ public class HttpServer {
         final AsyncHttpClient asyncHttpClient = asyncHttpClient();
 
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
-                new AsyncHttpClient(actorSystem).flowHttp(actorMaterializer);
+                new src.main.java.AsyncHttpClient(actorSystem).flowHttp(actorMaterializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost(HOST, PORT),
