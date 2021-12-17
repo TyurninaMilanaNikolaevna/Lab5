@@ -36,7 +36,7 @@ public class HttpClient {
                 .of(HttpRequest.class)
                 .map(request -> new Pair<>(
                     request.getUri().query().getOrElse("testUrl", ""),
-                    Integer.parseInt(request.getUri().query().getOrElse("count", ""))    
+                    Integer.parseInt(request.getUri().query().getOrElse("count", ""))
                 ))
     }
 }
