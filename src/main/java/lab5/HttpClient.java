@@ -31,5 +31,8 @@ public class HttpClient {
             .toMat(Sink.fold(0L, Long::sum), Keep.right());
     }
 
-    final Flow<HttpRequest, HttpResponse, NotUsed> flowHttp (ActorMaterializer actorMaterializer)
+    final Flow<HttpRequest, HttpResponse, NotUsed> flowHttp (ActorMaterializer actorMaterializer) {
+        return Flow
+                .of(HttpRequest.class)
+    }
 }
