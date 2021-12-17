@@ -20,7 +20,7 @@ public class HttpClient {
                         .prepareGet(request)
                         .execute()
                         .toCompletableFuture()
-                        .thenCompose((response -> CompletableFuture))
+                        .thenCompose((response -> CompletableFuture.completedFuture()))
     })
             >
 }
