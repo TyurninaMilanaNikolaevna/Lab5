@@ -30,5 +30,5 @@ public class HttpClient {
             .toMat(Sink.fold(0L, Long::sum), Keep.right());
     }
 
-    final Flow<HttpRequest, HttpResponse, NotUsed> 
+    final Flow<HttpRequest, HttpResponse, NotUsed> flowHttp 
 }
