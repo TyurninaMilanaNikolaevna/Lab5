@@ -18,8 +18,8 @@ public class CacheActor extends AbstractActor {
                     String key = (String) t.first();
                     if (cache.containsKey(key))
                         sender().tell(new Response(key, cache.get(key), self());
-                        else
-                            );
-                } )
+                        else sender().tell("NO RESPONSE", self());
+                })
+                .match(Response.class)
     }
 }
