@@ -12,6 +12,8 @@ public class HttpClient {
     private Sink<Pair<String, Integer>,
         return Flow.<Pair<String,Integer>>create()
             .mapConcat((request) -> Collections.nCopies(request.second(), request.first()))
-            .mapAsync(3, (request) -> )
+            .mapAsync(3, (request) -> {
+                Long startTime = 
+    })
             >
 }
