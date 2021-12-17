@@ -3,6 +3,7 @@ package lab5;
 import akka.actor.ActorSystem;
 import akka.stream.javadsl.Flow;
 import javafx.util.Pair;
+import org.asynchttpclient.Dsl;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -13,7 +14,8 @@ public class HttpClient {
         return Flow.<Pair<String,Integer>>create()
             .mapConcat((request) -> Collections.nCopies(request.second(), request.first()))
             .mapAsync(3, (request) -> {
-                Long startTime = 
+                Long startTime = System.currentTimeMillis();
+                return Dsl.asyncHttpClient()
     })
             >
 }
