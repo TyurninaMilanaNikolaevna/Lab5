@@ -23,7 +23,7 @@ import java.util.concurrent.CompletionStage;
 public class HttpClient {
 
     HttpClient (ActorSystem actorSystem) {
-        cacheActor = actorSystem.actorOf();
+        cacheActor = actorSystem.actorOf(CacheActor.props(), "cacheActor");
     }
 
     private Sink<Pair<String, Integer>, CompletionStage<Long>> sink() {
