@@ -31,7 +31,7 @@ public class HttpClient {
     private Sink<Pair<String, Integer>, CompletionStage<Long>> sink() {
         return Flow.<Pair<String,Integer>>create()
             .mapConcat((request) -> Collections.nCopies(request.second(), request.first()))
-            .mapAsync(3, (request) -> {
+            .mapAsync(5, (request) -> {
                 Long startTime = System.currentTimeMillis();
                 return Dsl.asyncHttpClient()
                         .prepareGet(request)
@@ -50,7 +50,7 @@ public class HttpClient {
                                 request.getUri().query().getOrElse("testUrl", ""),
                                 Integer.parseInt(request.getUri().query().getOrElse("count", ""))
                     )
-                ).mapAsync(3, (request) -> Patterns
+                ).mapAsync(5, (request) -> Patterns
                         .ask(cacheActor, request, Duration.ofSeconds(5))
                         .thenCompose((response) -> {
                             if (response.getClass() == String.class) {
