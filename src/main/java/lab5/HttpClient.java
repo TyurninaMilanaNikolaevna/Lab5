@@ -7,8 +7,8 @@ import javafx.util.Pair;
 public class HttpClient {
 
     private Sink<Pair<String, Integer>,
-        return Flow
-            .<Pair<String,Integer>>create()
-            .
+        return Flow.<Pair<String,Integer>>create()
+            .mapConcat((request) ->
+            )
             >
 }
