@@ -16,23 +16,22 @@ public class HttpServer {
 
     public static void main(String[] args) throws IOException {
         System.out.println("start!");
-        ActorSystem system = ActorSystem.create("routes");
+        ActorSystem actorSystem = ActorSystem.create("routes");
 
-        final Http http = Http.get(system);
-        final ActorMaterializer actorMaterializer = ActorMaterializer.create(system);
-        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = <вызов
-        метода которому передаем Http, ActorSystem и ActorMaterializer>;
+        final Http http = Http.get(actorSystem);
+        final ActorMaterializer actorMaterializer = ActorMaterializer.create(actorSystem);
+        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
+                new src.main.java.AsyncHttpClient(actorSystem).flowHttp(actorMaterializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost("localhost", 8080),
                 actorMaterializer
         );
-        System.out.println("Server online at http://localhost:8080/\nPress
-                RETURN to stop...");
+        System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
         System.in.read();
         binding
                 .thenCompose(ServerBinding::unbind)
-                .thenAccept(unbound -> system.terminate()); // and shutdown
+                .thenAccept(unbound -> actorSystem.terminate()); // and shutdown
         when done
     }
 }
