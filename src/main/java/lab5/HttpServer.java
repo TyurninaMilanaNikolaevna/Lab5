@@ -38,7 +38,8 @@ public class HttpServer {
         final AsyncHttpClient asyncHttpClient = asyncHttpClient();
 
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = Flow
-                .of(HttpRequest)
+                .of(HttpRequest.class)
+                .map(HttpServer::mal)
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost(HOST, PORT),
