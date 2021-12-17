@@ -17,6 +17,9 @@ public class HttpClient {
                 Long startTime = System.currentTimeMillis();
                 return Dsl.asyncHttpClient()
                         .prepareGet(request)
+                        .execute()
+                        .toCompletableFuture()
+                        .thenCompose()
     })
             >
 }
