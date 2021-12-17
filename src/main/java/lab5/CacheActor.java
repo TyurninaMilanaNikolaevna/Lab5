@@ -1,6 +1,17 @@
 package lab5;
 
-public class CacheActor {
+import akka.actor.AbstractActor;
 
-    private Map<String, Long> cache = 
+import java.util.HashMap;
+import java.util.Map;
+
+public class CacheActor extends AbstractActor {
+
+    private Map<String, Long> cache = new HashMap<>();
+
+    @Override
+    public Receive createReceive() {
+        return receiveBuilder()
+                .match()
+    }
 }
