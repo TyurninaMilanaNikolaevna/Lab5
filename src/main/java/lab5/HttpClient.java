@@ -8,6 +8,7 @@ public class HttpClient {
 
     private Sink<Pair<String, Integer>,
         return Flow
-            .<Pair<String,Integer>>
+            .<Pair<String,Integer>>create()
+            .
             >
 }
