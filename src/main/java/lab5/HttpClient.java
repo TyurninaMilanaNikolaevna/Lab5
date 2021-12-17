@@ -24,7 +24,7 @@ public class HttpClient {
 
     private ActorRef cacheActor;
 
-    HttpClient (ActorSystem actorSystem) {
+    AsyncHttpClient (ActorSystem actorSystem) {
         cacheActor = actorSystem.actorOf(CacheActor.props(), "cacheActor");
     }
 
