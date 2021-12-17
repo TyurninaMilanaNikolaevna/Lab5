@@ -18,10 +18,10 @@ public class CacheActor extends AbstractActor {
                 .match(Pair.class, pair-> {
                     String key = (String) pair.first();
                     if (cache.containsKey(key))
-                        sender().tell(new Response(key, cache.get(key), self()));
+                        sender().tell(new Response(key, cache.get(key)), self());
                     else sender().tell("NO RESPONSE", self());
                 })
-                .match(Response.class, response -> cache.put(response.))
+                .match(Response.class, response -> cache.put(response.getHostName(), response.getResponseTime()))
                 .build();
     }
 
