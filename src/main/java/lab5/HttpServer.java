@@ -33,7 +33,7 @@ public class HttpServer {
         final Http http = Http.get(actorSystem);
         final ActorMaterializer actorMaterializer = ActorMaterializer.create(actorSystem);
 
-        final AsyncHttpClient asyncHttpClient = 
+        final AsyncHttpClient asyncHttpClient = AsyncHttpClient();
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
                 new src.main.java.AsyncHttpClient(actorSystem).flowHttp(actorMaterializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
