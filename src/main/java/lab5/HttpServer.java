@@ -10,6 +10,7 @@ import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
+import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
 public class HttpServer {
@@ -28,10 +29,13 @@ public class HttpServer {
                 actorMaterializer
         );
         System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
-        System.in.read();
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         binding
                 .thenCompose(ServerBinding::unbind)
-                .thenAccept(unbound -> actorSystem.terminate()); // and shutdown
-        when done
+                .thenAccept(unbound -> actorSystem.terminate()); // and shutdown when done
     }
 }
