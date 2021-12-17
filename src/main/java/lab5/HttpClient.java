@@ -1,7 +1,8 @@
 package lab5;
 
 import akka.NotUsed;
-import akka.actor.ActorSystem;
+import akka.actor.ActorRef;
+import akka.http.javadsl.model.HttpEntities;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.pattern.Patterns;
@@ -10,6 +11,7 @@ import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
 import akka.japi.Pair;
+import akka.stream.javadsl.Source;
 import org.asynchttpclient.Dsl;
 
 import java.time.Duration;
@@ -43,6 +45,22 @@ public class HttpClient {
                     )
                 ).mapAsync(3, (request) -> Patterns
                         .ask(cacheActor, request, Duration.ofSeconds(5))
-                        .thenC)
+                        .thenCompose((response) -> {
+                            if (response.getClass() == String.class) {
+                                return Source.from(Collections.singletonList(request))
+                                        .toMat(sink(), Keep.right()).run(actorMaterializer)
+                                        .thenApply((t) -> new Response(request.first(), t / request.second()));
+                            }
+                            else return CompletableFuture.completedFuture(response);
+                        })
+                ).map(param -> {
+                    cacheActor.tell(p, ActorRef.noSender());
+                    return HttpResponse.create()
+                            .withEntity(
+                                    HttpEntities.create(
+                                            ((Response) param).getResponseTime() + " " + ((Response) p).getHostName()
+                                    )
+                            );
+                });
     }
 }
