@@ -22,6 +22,8 @@ import java.util.concurrent.CompletionStage;
 
 public class HttpClient {
 
+    private ActorRef cacheActor;
+
     HttpClient (ActorSystem actorSystem) {
         cacheActor = actorSystem.actorOf(CacheActor.props(), "cacheActor");
     }
