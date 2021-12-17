@@ -15,6 +15,8 @@ import org.asynchttpclient.AsyncHttpClient;
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
+import static org.asynchttpclient.Dsl.asyncHttpClient;
+
 public class HttpServer {
 
     private static final String HOST = "localhost";
@@ -33,7 +35,8 @@ public class HttpServer {
         final Http http = Http.get(actorSystem);
         final ActorMaterializer actorMaterializer = ActorMaterializer.create(actorSystem);
 
-        final AsyncHttpClient asyncHttpClient = AsyncHttpClient();
+        final AsyncHttpClient asyncHttpClient = asyncHttpClient();
+
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
                 new src.main.java.AsyncHttpClient(actorSystem).flowHttp(actorMaterializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
@@ -41,18 +44,12 @@ public class HttpServer {
                 ConnectHttp.toHost(HOST, PORT),
                 actorMaterializer
         );
+
         System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.in.read();
+
         binding
                 .thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> actorSystem.terminate()); // and shutdown when done
-
-        try {
-
-        }
     }
 }
