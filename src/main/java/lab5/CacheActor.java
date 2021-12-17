@@ -14,12 +14,12 @@ public class CacheActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(Pair.class, t-> {
-                    String key = (String) t.first();
+                .match(Pair.class, pair-> {
+                    String key = (String) pair.first();
                     if (cache.containsKey(key))
-                        sender().tell(new Response(key, cache.get(key), self());
-                        else sender().tell("NO RESPONSE", self());
+                        sender().tell(new Response(key, cache.get(key), self()));
+                    else sender().tell("NO RESPONSE", self());
                 })
-                .match(Response.class)
+                .match(Response.class, response -> cache.put(response.))
     }
 }
