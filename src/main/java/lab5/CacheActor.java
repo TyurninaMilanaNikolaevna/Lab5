@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class CacheActor extends AbstractActor {
 
-    private Map<String, Long> cache = new HashMap<>();
+    private final Map<String, Long> cache = new HashMap<>();
 
     @Override
     public Receive createReceive() {

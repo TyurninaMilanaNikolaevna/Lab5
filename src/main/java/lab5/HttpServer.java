@@ -22,7 +22,7 @@ public class HttpServer {
     private static final String HOST = "localhost";
     private static final int PORT = 8080;
 
-    private ActorRef routeActor;
+    private final ActorRef routeActor;
     private HttpServer(ActorRef routeActor) {
         this.routeActor = routeActor;
     }
