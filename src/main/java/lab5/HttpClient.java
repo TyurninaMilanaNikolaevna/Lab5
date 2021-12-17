@@ -34,9 +34,11 @@ public class HttpClient {
     final Flow<HttpRequest, HttpResponse, NotUsed> flowHttp (ActorMaterializer actorMaterializer) {
         return Flow
                 .of(HttpRequest.class)
-                .map(request -> new Pair<>(
-                    request.getUri().query().getOrElse("testUrl", ""),
-                    Integer.parseInt(request.getUri().query().getOrElse("count", ""))
-                ))
+                .map(
+                        request -> new Pair<>(
+                                request.getUri().query().getOrElse("testUrl", ""),
+                                Integer.parseInt(request.getUri().query().getOrElse("count", ""))
+                    )
+                ).mapAsync(3, (request))
     }
 }
