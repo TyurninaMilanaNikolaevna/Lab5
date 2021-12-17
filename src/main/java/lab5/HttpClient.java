@@ -4,6 +4,7 @@ import akka.NotUsed;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
@@ -30,5 +31,5 @@ public class HttpClient {
             .toMat(Sink.fold(0L, Long::sum), Keep.right());
     }
 
-    final Flow<HttpRequest, HttpResponse, NotUsed> flowHttp 
+    final Flow<HttpRequest, HttpResponse, NotUsed> flowHttp (ActorMaterializer actorMaterializer)
 }
