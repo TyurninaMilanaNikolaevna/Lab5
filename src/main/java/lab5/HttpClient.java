@@ -35,7 +35,7 @@ public class HttpClient {
         return Flow
                 .of(HttpRequest.class)
                 .map(request -> new Pair<>(
-                    request.getUri().query().getOrElse()
+                    request.getUri().query().getOrElse("testUrl", )
                 ))
     }
 }
