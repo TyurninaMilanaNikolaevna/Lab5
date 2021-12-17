@@ -63,7 +63,7 @@ public class HttpClient {
                     return HttpResponse.create()
                             .withEntity(
                                     HttpEntities.create(
-                                            ((Response) param).getResponseTime() + " " + ((Response) p).getHostName()
+                                            ((Response) param).getResponseTime() + " " + ((Response) param).getHostName()
                                     )
                             );
                 });
