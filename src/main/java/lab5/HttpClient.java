@@ -1,8 +1,11 @@
 package lab5;
 
+import akka.actor.ActorSystem;
 import org.asynchttpclient.AsyncHttpClient;
 
 public class HttpClient {
 
-    AsyncHttpClient()
+    AsyncHttpClient(ActorSystem actorSystem) {
+        
+    }
 }
