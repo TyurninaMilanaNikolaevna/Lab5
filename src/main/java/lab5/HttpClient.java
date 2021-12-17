@@ -40,6 +40,7 @@ public class HttpClient {
                                 request.getUri().query().getOrElse("testUrl", ""),
                                 Integer.parseInt(request.getUri().query().getOrElse("count", ""))
                     )
-                ).mapAsync(3, (request) -> Patterns)
+                ).mapAsync(3, (request) -> Patterns
+                        .ask(cacheActor.c))
     }
 }
