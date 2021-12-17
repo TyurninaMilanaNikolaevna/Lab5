@@ -1,5 +1,6 @@
 package lab5;
 
+import akka.NotUsed;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
@@ -29,5 +30,5 @@ public class HttpClient {
             .toMat(Sink.fold(0L, Long::sum), Keep.right());
     }
 
-    final Flow<HttpRequest, HttpResponse, >
+    final Flow<HttpRequest, HttpResponse, NotUsed> 
 }
