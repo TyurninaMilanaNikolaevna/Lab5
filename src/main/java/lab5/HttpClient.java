@@ -54,7 +54,7 @@ public class HttpClient {
                             else return CompletableFuture.completedFuture(response);
                         })
                 ).map(param -> {
-                    cacheActor.tell(p, ActorRef.noSender());
+                    cacheActor.tell(param, ActorRef.noSender());
                     return HttpResponse.create()
                             .withEntity(
                                     HttpEntities.create(
