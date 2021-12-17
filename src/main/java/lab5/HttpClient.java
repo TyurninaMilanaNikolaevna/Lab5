@@ -1,6 +1,7 @@
 package lab5;
 
 import akka.actor.ActorSystem;
+import akka.http.javadsl.model.HttpRequest;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
@@ -25,6 +26,7 @@ public class HttpClient {
                         .thenCompose((response -> CompletableFuture.completedFuture(System.currentTimeMillis() - startTime)));
                 })
             .toMat(Sink.fold(0L, Long::sum), Keep.right());
-            }
-            
+    }
+
+    final Flow<HttpRequest, H>
 }
