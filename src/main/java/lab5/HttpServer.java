@@ -51,5 +51,11 @@ public class HttpServer {
         binding
                 .thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> actorSystem.terminate()); // and shutdown when done
+
+        try {
+            asyncHttpClient.close();
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
     }
 }
