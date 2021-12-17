@@ -4,6 +4,7 @@ import akka.NotUsed;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
@@ -39,6 +40,6 @@ public class HttpClient {
                                 request.getUri().query().getOrElse("testUrl", ""),
                                 Integer.parseInt(request.getUri().query().getOrElse("count", ""))
                     )
-                ).mapAsync(3, (request))
+                ).mapAsync(3, (request) -> Patterns)
     }
 }
