@@ -1,11 +1,11 @@
-package lab;
+package lab5;
 
 public class Response {
 
     private String hostName;
-    private int responseTime;
+    private Long responseTime;
 
-    Response(String hostName, int responseTime) {
+    Response(String hostName, Long responseTime) {
         this.hostName = hostName;
         this.responseTime = responseTime;
     }
@@ -14,7 +14,7 @@ public class Response {
         return hostName;
     }
 
-    public int getResponseTime() {
+    public Long getResponseTime() {
         return responseTime;
     }
 
@@ -22,7 +22,7 @@ public class Response {
         this.hostName = hostName;
     }
 
-    public void setResponseTime(int responseTime) {
+    public void setResponseTime(Long responseTime) {
         this.responseTime = responseTime;
     }
 }
