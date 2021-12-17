@@ -1,6 +1,7 @@
 package lab5;
 
 import akka.actor.AbstractActor;
+import akka.actor.Props;
 import akka.japi.Pair;
 
 import javax.xml.ws.Response;
@@ -21,5 +22,10 @@ public class CacheActor extends AbstractActor {
                     else sender().tell("NO RESPONSE", self());
                 })
                 .match(Response.class, response -> cache.put(response.))
+                .build();
+    }
+
+    static Props props() {
+        return Props.create()
     }
 }
