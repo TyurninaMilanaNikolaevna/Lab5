@@ -1,10 +1,13 @@
 package lab5;
 
 import akka.actor.ActorSystem;
+import akka.stream.javadsl.Flow;
+import javafx.util.Pair;
 
 public class HttpClient {
 
-    void AsyncHttpClient(ActorSystem actorSystem) {
-        cacheActor = actorSystem.actorOf(CacheActor.props(), "cacheActor");
-    }
+    private Sink<Pair<String, Integer>,
+        return Flow
+            .<Pair<String,Integer>>
+            >
 }
