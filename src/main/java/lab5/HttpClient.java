@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.concurrent.CompletableFuture;
 
 public class HttpClient {
 
@@ -19,9 +20,7 @@ public class HttpClient {
                         .prepareGet(request)
                         .execute()
                         .toCompletableFuture()
-                        .thenCompose((response -> {
-                            
-                        }))
+                        .thenCompose((response -> CompletableFuture))
     })
             >
 }
