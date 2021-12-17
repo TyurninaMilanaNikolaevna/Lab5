@@ -23,7 +23,6 @@ public class HttpServer {
     private static final int PORT = 8080;
 
     private ActorRef routeActor;
-
     private HttpServer(ActorRef routeActor) {
         this.routeActor = routeActor;
     }
@@ -38,7 +37,7 @@ public class HttpServer {
         final AsyncHttpClient asyncHttpClient = asyncHttpClient();
 
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow
-                = new src.main.java.AsyncHttpClient(actorSystem).flowHttp(actorMaterializer);
+                = new HttpClient(actorSystem).flowHttp(actorMaterializer);
 
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
