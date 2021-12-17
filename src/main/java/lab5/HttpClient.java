@@ -2,6 +2,7 @@ package lab5;
 
 import akka.NotUsed;
 import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpEntities;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
@@ -20,6 +21,10 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 public class HttpClient {
+
+    HttpClient (ActorSystem actorSystem) {
+        cacheActor = actorSystem.actorOf();
+    }
 
     private Sink<Pair<String, Integer>, CompletionStage<Long>> sink() {
         return Flow.<Pair<String,Integer>>create()
