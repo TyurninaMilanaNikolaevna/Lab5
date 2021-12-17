@@ -2,8 +2,9 @@ package lab5;
 
 import akka.actor.ActorSystem;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
-import javafx.util.Pair;
+import akka.japi.Pair;
 import org.asynchttpclient.Dsl;
 
 import java.util.Collection;
@@ -13,7 +14,7 @@ import java.util.concurrent.CompletionStage;
 
 public class HttpClient {
 
-    private Sink<Pair<String, Integer>, CompletionStage<Long>>
+    private Sink<Pair<String, Integer>, CompletionStage<Long>> {
         return Flow.<Pair<String,Integer>>create()
             .mapConcat((request) -> Collections.nCopies(request.second(), request.first()))
             .mapAsync(3, (request) -> {
