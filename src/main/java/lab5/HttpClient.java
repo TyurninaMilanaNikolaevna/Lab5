@@ -22,6 +22,6 @@ public class HttpClient {
                         .toCompletableFuture()
                         .thenCompose((response -> CompletableFuture.completedFuture(System.currentTimeMillis() - startTime)))
                 })
-            .toMat(Sink.fold())
+            .toMat(Sink.fold(0L, Long::sum), Keep.right());
             >
 }
